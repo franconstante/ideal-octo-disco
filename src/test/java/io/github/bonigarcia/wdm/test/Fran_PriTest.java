@@ -75,4 +75,20 @@ public class ChromeTest {
                 "Computer software"));
     }
 
+    @Test
+    public void testSephora() {
+        // Your test code here. For example:
+        WebDriverWait wait = new WebDriverWait(driver, 15);
+        driver.get("https://www.sephora.com.br/");
+        By searchInput = By.id("search");
+        wait.until(presenceOfElementLocated(searchInput));
+        driver.findElement(searchInput).sendKeys("Batom");
+        By searchButton = By.id("btn-search");
+        wait.until(elementToBeClickable(searchButton));
+        driver.findElement(searchButton).click();
+
+        wait.until(textToBePresentInElementLocated(By.tagName("body"),
+                "Batom Velvet Matte Lip Pencil"));
+    }
+
 }
